@@ -46,7 +46,7 @@ public class PeopleAndFriends {
             peopleWriter.print(Integer.toString(p.getId()));
             peopleWriter.print(',');
             peopleWriter.print(p.getFirst());
-            peopleWriter.print(' ');
+            peopleWriter.print(',');
             peopleWriter.println(p.getLast());
         }
         peopleWriter.close();
