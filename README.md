@@ -1,7 +1,7 @@
 # kompetens-bigdata
 Sources and presentation for Kompetensomrade BigData
 
-Pre-load by visiting the downloads page [wiki/Downloads.md]
+Pre-load by visiting the [Downloads page](wiki/Downloads)
 
 # Definition of Big Data
 
