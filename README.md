@@ -1,6 +1,8 @@
 # kompetens-bigdata
 Sources and presentation for Kompetensomrade BigData
 
+Pre-load by visiting the downloads page [wiki/Downloads.md]
+
 # Definition of Big Data
 
 `Big data usually includes data sets with sizes beyond the ability of commonly used software tools to capture, curate, manage, and process data within a tolerable elapsed time.` (Snijders, C.; Matzat, U.; Reips, U.-D. (2012). "'Big Data': Big gaps of knowledge in the field of Internet")
