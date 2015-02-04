@@ -12,8 +12,18 @@ The three increasing Vs:
 * Velocity (speed of data in and out)
 * Varitey (range of data types and sources)
 
-# Scaling
+# Scaling and Hadoop
 _Horizontal scaling_ by adding more server hardware is important, and both volume and velocity should scale linearly with number of servers or nodes.
+Hadoop is a java software framework which allows you to setup a cluster of commodity server hardware, on which you can distribute your data storage and processing so that it scales linearly.
+
+_Hadoop_ is quite a piece to download, build and configure from the Apache Open Source, so there are various distributions to make that step a breeze:
+* Cloudera CDH
+* Hortonworks
+* Microsoft HDInsight
+* IBM Big Data Platform
+* Amazon Web Services
+
+Many of these also have a quick start Single-Node system setup and ready in a VirtualBox VM.
 
 # Storing data
 Data is often stored in a database or in a file system. 
@@ -52,4 +62,4 @@ Common formats of serialized big data are
 * Avro (Apache Hadoop) supports schema evolution
 * ProtoBuf (Google)
 * JSON (JavaScript Object Notation)
-* 
+
