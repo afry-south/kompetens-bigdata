@@ -17,6 +17,11 @@ import java.util.TreeMap;
  */
 public class Clickstream {
 
+    private static final String[] CATEGORY = {"Apparel", "Books", "Cycling", "Diving",
+            "Electronics", "Fishing", "Golf", "Hotels",
+            "Innovations", "Opera", "Mountains", "Laundry",
+            "Music", "Sports", "Travel", "Universe"};
+
     public static void main(String[] args) throws IOException {
 
         final File srcMainResources = new File("src/main/resources");
@@ -50,14 +55,14 @@ public class Clickstream {
 
             for (int c = 0; c < clickCount; c++) {
                 Integer pid = getCorrelatedProduct(clickedCategories, totalProbability, productProbabilities, productCategories);
+                int cat = productCategories.get(pid);
 
                 // write to clickstream
                 // IP,userId,timestamp,GET /pdp_PID.html,status,latency
-                String s = String.format("127.0.0.1\t%d\t%d\tGET /pdp_%d.html\t200\t152",
-                        userId, timestamp++, pid);
+                String s = String.format("127.0.0.1\t%d\t%d\tGET /pdp_%s_%d.html\t200\t152",
+                        userId, timestamp++, CATEGORY[cat], pid);
                 clickWriter.println(s);
 
-                Integer cat = productCategories.get(pid);
                 clickedCategories.add(cat);
             }
         }
