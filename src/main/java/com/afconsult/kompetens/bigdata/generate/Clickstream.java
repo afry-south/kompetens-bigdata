@@ -53,7 +53,7 @@ public class Clickstream {
 
                 // write to clickstream
                 // IP,userId,timestamp,GET /pdp_PID.html,status,latency
-                String s = String.format("127.0.0.1\\t%d\\t%d\\tGET /pdp_%d.html 200 152",
+                String s = String.format("127.0.0.1\t%d\t%d\tGET /pdp_%d.html\t200\t152",
                         userId, timestamp++, pid);
                 clickWriter.println(s);
 

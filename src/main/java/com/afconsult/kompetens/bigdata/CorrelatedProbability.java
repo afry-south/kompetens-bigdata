@@ -14,7 +14,7 @@ import java.util.StringTokenizer;
 public class CorrelatedProbability extends CrunchTool
 {
     public static final String INPUT_BASE = "src/main/resources/";
-    public static final String INPUT_PEOPLE_CSV = INPUT_BASE + "people.csv";
+    public static final String INPUT_ACCESS_LOG = INPUT_BASE + "access.log";
 
     public static void main( String[] args ) throws Exception {
         System.exit(ToolRunner.run(new CorrelatedProbability(), args));
@@ -23,24 +23,30 @@ public class CorrelatedProbability extends CrunchTool
     @Override
     public int run(String[] strings) throws Exception {
 
-        PCollection<String> rawPeople = getPipeline().readTextFile(INPUT_PEOPLE_CSV);
+        PCollection<String> rawAccessLog = getPipeline().readTextFile(INPUT_ACCESS_LOG);
 
-        PCollection<String> maria = rawPeople.parallelDo(new DoFn<String, String>() {
+        PTable<String,String> clicks = rawAccessLog.parallelDo(new DoFn<String, Pair<String,String>>() {
             @Override
-            public void process(String s, Emitter<String> emitter) {
-                StringTokenizer st = new StringTokenizer(s, ",");
-                Person p = new Person();
-                p.setId(Integer.parseInt(st.nextToken()));
-                p.setFirst(st.nextToken());
-                p.setLast(st.nextToken());
+            public void process(String s, Emitter<Pair<String,String>> emitter) {
 
-                if ("Maria".equals(p.getFirst())) {
-                    emitter.emit(p.getLast());
-                }
+                // IP,userId,timestamp,GET /pdp_PID.html,status,latency
+//                String s = String.format("127.0.0.1\\t%d\\t%d\\tGET /pdp_%d.html\\t200\\t152",
+//                        userId, timestamp++, pid);
+                StringTokenizer st = new StringTokenizer(s, "\t");
+                String ip = st.nextToken();
+                String userId = st.nextToken();
+                String timestamp = st.nextToken();
+                String verb = st.nextToken();
+
+                final String prefix = "GET /pdp_";
+                final String suffix = ".html";
+
+                String productId = verb.substring(prefix.length(), verb.indexOf(suffix));
+                emitter.emit(Pair.of(userId, productId));
             }
-        }, Writables.strings());
+        }, Writables.tableOf(Writables.strings(), Writables.strings()));
 
-        System.out.println(maria.count().top(5).materializeToMap());
+        getPipeline().writeTextFile(clicks, "target/clicks");
 
         return getPipeline().done().succeeded() ? 0 : 1;
     }
