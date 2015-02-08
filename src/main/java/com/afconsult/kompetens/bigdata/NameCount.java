@@ -8,16 +8,16 @@ import org.apache.hadoop.util.ToolRunner;
 import java.util.StringTokenizer;
 
 /**
- * Hello world!
+ * Counts frequencies of first and last names.
  *
  */
-public class JoinMain extends CrunchTool
+public class NameCount extends CrunchTool
 {
     public static final String INPUT_BASE = "src/main/resources/";
     public static final String INPUT_PEOPLE_CSV = INPUT_BASE + "people.csv";
 
     public static void main( String[] args ) throws Exception {
-        System.exit(ToolRunner.run(new JoinMain(), args));
+        System.exit(ToolRunner.run(new NameCount(), args));
     }
 
     @Override
