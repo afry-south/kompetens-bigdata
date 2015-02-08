@@ -1,7 +1,7 @@
 # kompetens-bigdata
 Sources and presentation for Kompetensomrade BigData
 
-Pre-load by visiting the [Downloads page](wiki/Downloads)
+Pre-load by visiting the [Downloads page](https://github.com/afconsult-south/kompetens-bigdata/wiki/Downloads)
 
 # Definition of Big Data
 
