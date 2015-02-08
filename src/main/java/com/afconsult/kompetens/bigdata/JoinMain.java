@@ -1,6 +1,7 @@
 package com.afconsult.kompetens.bigdata;
 
 import org.apache.crunch.*;
+import org.apache.crunch.lib.Channels;
 import org.apache.crunch.types.writable.Writables;
 import org.apache.crunch.util.CrunchTool;
 import org.apache.hadoop.util.ToolRunner;
@@ -25,7 +26,7 @@ public class JoinMain extends CrunchTool
 
         PCollection<String> rawPeople = getPipeline().readTextFile(INPUT_PEOPLE_CSV);
 
-        PTable<String,String> people = rawPeople.parallelDo(new DoFn<String, Pair<String, String>>() {
+        PCollection<Pair<String,String>> people = rawPeople.parallelDo(new DoFn<String, Pair<String, String>>() {
             @Override
             public void process(String s, Emitter<Pair<String, String>> emitter) {
                 StringTokenizer st = new StringTokenizer(s, ",");
@@ -34,13 +35,19 @@ public class JoinMain extends CrunchTool
                 p.setFirst(st.nextToken());
                 p.setLast(st.nextToken());
 
-                if ("Maria".equals(p.getFirst()) && "Johansson".equals(p.getLast())) {
-                    emitter.emit(Pair.of(Integer.toString(p.getId()), "Maria Johansson"));
-                }
+                emitter.emit(Pair.of(p.getFirst(), p.getLast()));
             }
-        }, Writables.tableOf(Writables.strings(), Writables.strings()));
+        }, Writables.pairs(Writables.strings(), Writables.strings()));
 
-        System.out.println(people.materializeToMap().size());
+        // do the split
+        Pair<PCollection<String>, PCollection<String>> split = Channels.split(people);
+
+        // Simple Aggregation in Crunch
+        PTable<String, Long> fqFirst = split.first().count();
+        PTable<String, Long> fqLast = split.second().count();
+
+        getPipeline().writeTextFile(fqFirst.top(20), "target/firstNames-top-20");
+        getPipeline().writeTextFile(fqLast.bottom(10), "target/lastNames-bottom-10");
 
         return getPipeline().done().succeeded() ? 0 : 1;
     }
