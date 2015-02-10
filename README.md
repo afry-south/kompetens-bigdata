@@ -21,6 +21,9 @@ The three increasing Vs:
 * Flu monitoring
 * Road maintenance data collection and analytics
 * Joining and denormalizing relational data
+* Netflix and Spotify - need I say more
+* Payment History becomes Credit Score
+* Weather monitoring and patterns
 
 # Scaling and Hadoop
 _Horizontal scaling_ by adding more server hardware is important, and both volume and velocity should scale linearly with number of servers or nodes.
@@ -54,6 +57,8 @@ Many databases have been developed to manage larger data sets with higher throug
 Hadoop is the dominating framework to help scaling or distributing the processing of big data. There are two patterns being used:
 * MapReduce
 * Spark
+ 
+[A really simple introduction to MapReduce](http://ksat.me/map-reduce-a-really-simple-introduction-kloudo/)
 
 ### MapReduce high-level frameworks
 Nowadays, you rarely develop pipelines based on the low-level MapReduce API. Instead, you use other tools, frameworks or languages, such as
@@ -75,3 +80,7 @@ Common formats of serialized big data are
 * ProtoBuf (Google)
 * JSON (JavaScript Object Notation)
 
+# More info
+[Cloudera's CEO talks us through big data trends](http://youtu.be/S9xnYBVqLws)
+[Big Data Explained](http://youtu.be/c4BwefH5Ve8)
+[Big Data, Small World: Kirk Borne at TEDx](http://youtu.be/Zr02fMBfuRA)
