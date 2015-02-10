@@ -12,9 +12,21 @@ The three increasing Vs:
 * Velocity (speed of data in and out)
 * Varitey (range of data types and sources)
 
+# Use case examples
+
+* Analytics post-processing
+* E-commerce personalization
+* Email campaign selection
+* Log files investigations
+* Flu monitoring
+* Road maintenance data collection and analytics
+* Joining and denormalizing relational data
+
 # Scaling and Hadoop
 _Horizontal scaling_ by adding more server hardware is important, and both volume and velocity should scale linearly with number of servers or nodes.
 Hadoop is a java software framework which allows you to setup a cluster of commodity server hardware, on which you can distribute your data storage and processing so that it scales linearly.
+
+Data volumes are so large, that you _cannot move the data_ to where you want to process it. Instead, you move the processing code to _each server_ where the data is.
 
 _Hadoop_ is quite a piece to download, build and configure from the Apache Open Source, so there are various distributions to make that step a breeze:
 * Cloudera CDH
