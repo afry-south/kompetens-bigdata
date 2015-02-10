@@ -81,6 +81,7 @@ Common formats of serialized big data are
 * JSON (JavaScript Object Notation)
 
 # More info
-[Cloudera's CEO talks us through big data trends](http://youtu.be/S9xnYBVqLws)
-[Big Data Explained](http://youtu.be/c4BwefH5Ve8)
-[Big Data, Small World: Kirk Borne at TEDx](http://youtu.be/Zr02fMBfuRA)
+
+* [Cloudera's CEO talks us through big data trends](http://youtu.be/S9xnYBVqLws)
+* [Big Data Explained](http://youtu.be/c4BwefH5Ve8)
+* [Big Data, Small World: Kirk Borne at TEDx](http://youtu.be/Zr02fMBfuRA)
